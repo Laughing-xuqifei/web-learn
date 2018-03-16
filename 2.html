@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ch05_03</title>
+	<link rel="stylesheet" type="text/css" href="color.css">
+	<script type="text/javascript">
+		function onLoad(){
+			inputSpan.style.display='none';
+			if(typeof(Storage)=="undefined"){
+				alter("不支持");
+			}else{
+   				if(localStorage.username){
+   					if(localStorage.counter){
+   						localStorage.counter=1;
+   					}else{
+   						localStorage.counter++;
+   					}
+   					btn_login.style.display='none';
+   					show_LocalStorage.innerHTML=localStorage.username+"你好你是第"+localStorage.counter+"次";
+   				}
+   				btn_login.addEventListener("click",login);
+   				btn_send.addEventListener("click",sendok);
+   				btn_logout.addEventListener("click",logout);
+
+			}
+		}
+		function login(){
+			inputSpan.style.display='';
+		}
+		function sendok(){
+			localStorage.username=inputname.value;
+			location.reload();
+		}
+		function logout(){
+			localStorage.clear();
+			show_LocalStorage.innerHTML="已注销";
+			btn_login.style.display='';
+			inputSpan.style.display='';
+		}
+	</script>
+</head>
+<body>
+<body onload="onLoad()">
+<button id="btn_login">登录</button>
+<button id="btn_logout">注销</button>
+<img src="images/p1_imooc.png"><br />
+<span id="inputSpan" >请输入你的姓名<input type="text" id="inputname" value="">
+<button id="btn_send">提交</button></span><br />
+<div id="show_LocalStorage"></div><br />
+</body>
+</body>
+</html>
